@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 745625074}
   - component: {fileID: 745625073}
   m_Layer: 5
-  m_Name: AddHealthButton
+  m_Name: HealButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1697207840}
         m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
-        m_MethodName: AddHealth
+        m_MethodName: Heal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -983,7 +983,7 @@ GameObject:
   - component: {fileID: 1180685816}
   - component: {fileID: 1180685815}
   m_Layer: 5
-  m_Name: TakeDamageButton
+  m_Name: DamageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1056,7 +1056,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1697207840}
         m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
-        m_MethodName: TakeDamage
+        m_MethodName: Damage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slider: {fileID: 64571914}
   _playerHealth: {fileID: 1697207840}
-  _handleSpeed: 20
+  _handleSpeed: 30
 --- !u!4 &1774357550
 Transform:
   m_ObjectHideFlags: 0

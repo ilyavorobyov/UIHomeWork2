@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -10,7 +11,7 @@ public class SliderView : MonoBehaviour
 
     private float _maxSliderValue;
     private float _newValue;
-    private bool _isChangeSliderValue = false;
+    private Coroutine _changeValue;
 
     private void Start()
     {
@@ -19,23 +20,27 @@ public class SliderView : MonoBehaviour
         _slider.value = _maxSliderValue;
     }
 
-    private void Update()
+    private void ChangeSliderValue()
     {
-        if(_isChangeSliderValue)
+        if (_changeValue != null)
+        {
+            StopCoroutine(_changeValue);
+        }
+
+        _changeValue = StartCoroutine(ChangeValue());
+    }
+
+    private IEnumerator ChangeValue()
+    {
+        _newValue = _playerHealth.Health;
+        var waitFixedUpdate = new WaitForFixedUpdate();
+
+        while (_slider.value != _newValue)
         {
             _slider.value = Mathf.MoveTowards(_slider.value, _newValue, _handleSpeed * Time.deltaTime);
 
-            if(_slider.value == _newValue)
-            {
-                _isChangeSliderValue = false;
-            }
+            yield return waitFixedUpdate;
         }
-    }
-
-    private void ChangeSliderValue()
-    {
-        _newValue = _playerHealth.Health;
-        _isChangeSliderValue = true;
     }
 
     private void OnEnable()

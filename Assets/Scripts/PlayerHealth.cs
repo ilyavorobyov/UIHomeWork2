@@ -3,44 +3,26 @@ using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private UnityEvent _healthÑhange = new UnityEvent();
-
     private float _damage = 10;
     private float _healing = 10;
     private float _maxHealth = 100;
     private float _minHealth = 0;
 
+    public event UnityAction HealthÑhange;
+
     public float Health { get; private set; } = 100;
 
-    public event UnityAction HealthÑhange
+    public void Damage()
     {
-        add => _healthÑhange.AddListener(value);
-        remove => _healthÑhange.RemoveListener(value);
+        Health -= _damage;
+        Health = Mathf.Clamp(Health, _minHealth, _maxHealth);
+        HealthÑhange.Invoke();
     }
 
-    public void TakeDamage()
+    public void Heal()
     {
-        if (Health - _damage < _minHealth)
-        {
-            Debug.Log($"Ó èãğîêà {_minHealth} ÕÏ, íàíåñåíèå óğîíà íåâîçìîæíî!");
-        }
-        else
-        {
-            Health -= _damage;
-            _healthÑhange.Invoke();
-        }
-    }
-
-    public void AddHealth()
-    {
-        if (Health + _healing > _maxHealth)
-        {
-            Debug.Log("Ó èãğîêà ìàêñèìàëüíîå çäîğîâüå");
-        }
-        else
-        {
-            Health += _healing;
-            _healthÑhange.Invoke();
-        }
+        Health += _healing;
+        Health = Mathf.Clamp(Health, _minHealth, _maxHealth);
+        HealthÑhange.Invoke();
     }
 }
