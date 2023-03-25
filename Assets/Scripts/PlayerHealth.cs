@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     private float _maxHealth = 100;
     private float _minHealth = 0;
 
-    public event UnityAction Health—hange;
+    public event UnityAction HealthChange;
 
     public float Health { get; private set; } = 100;
 
@@ -16,13 +16,13 @@ public class PlayerHealth : MonoBehaviour
     {
         Health -= _damage;
         Health = Mathf.Clamp(Health, _minHealth, _maxHealth);
-        Health—hange.Invoke();
+        HealthChange.Invoke();
     }
 
     public void Heal()
     {
         Health += _healing;
         Health = Mathf.Clamp(Health, _minHealth, _maxHealth);
-        Health—hange.Invoke();
+        HealthChange.Invoke();
     }
 }

@@ -45,11 +45,11 @@ public class SliderView : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerHealth.Health—hange += ChangeSliderValue;
+        _playerHealth.HealthChange += ChangeSliderValue;
     }
 
     private void OnDisable()
     {
-        _playerHealth.Health—hange -= ChangeSliderValue;
+        _playerHealth.HealthChange -= ChangeSliderValue;
     }
 }
